@@ -1,0 +1,251 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Lora:ital,wght@0,400;0,500;1,400&display=swap');
+
+:root {
+    --bg-color: #0f0f0f;
+    --text-color: #ffffff;
+    --text-muted: #a0a0a0;
+    --accent-color: #4a90e2;
+    --glow-color: rgba(255, 255, 255, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Background Image Animation */
+.bg-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Update "bg.jpg" to the actual name of your saved image file */
+    background-image: linear-gradient(rgba(15, 15, 15, 0.7), rgba(15, 15, 15, 0.85)), url('bg.jpg');
+    background-size: cover;
+    background-position: center 20%;
+    /* Centers the top part of the statue */
+    background-repeat: no-repeat;
+    z-index: -1;
+    animation: slowZoom 30s linear infinite alternate;
+    pointer-events: none;
+}
+
+@keyframes slowZoom {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(1.08);
+    }
+}
+
+/* Scanner Page */
+.scanner-container {
+    background: rgba(25, 25, 30, 0.6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 2rem;
+    border-radius: 20px;
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 0 30px var(--glow-color);
+    z-index: 10;
+}
+
+.scanner-container h1 {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    letter-spacing: 1px;
+}
+
+.subtitle {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+}
+
+#reader {
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #000;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+#reader video {
+    border-radius: 10px;
+}
+
+/* Hide default html5-qrcode elements we don't want */
+#reader__dashboard_section_csr span,
+#reader__dashboard_section_swaplink {
+    color: var(--text-color) !important;
+}
+
+#reader__dashboard_section_csr button {
+    background: var(--bg-color);
+    color: var(--text-color);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background 0.3s;
+}
+
+#reader__dashboard_section_csr button:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+#loading {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.spinner {
+    width: 30px;
+    height: 30px;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    border-top-color: var(--text-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Poem Page */
+.poem-page {
+    /* Different font for poem page */
+    font-family: 'Lora', serif;
+    align-items: flex-start;
+    padding: 6rem 1rem 3rem 1rem;
+}
+
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 2.5s ease-in forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+.poem-container {
+    text-align: center;
+    max-width: 600px;
+    width: 100%;
+    z-index: 10;
+}
+
+.poem-title {
+    font-size: 1.8rem;
+    font-weight: 400;
+    margin-bottom: 3rem;
+    letter-spacing: 2px;
+}
+
+.poem-content p {
+    margin-bottom: 2rem;
+    line-height: 2;
+    letter-spacing: 0.5px;
+    font-size: 1.1rem;
+    color: #e0e0e0;
+}
+
+.btn {
+    display: inline-block;
+    margin-top: 2rem;
+    padding: 12px 30px;
+    background: transparent;
+    color: var(--text-color);
+    text-decoration: none;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 30px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+/* Music Toggle Button */
+.music-toggle {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: var(--text-color);
+    z-index: 100;
+    transition: all 0.3s ease;
+}
+
+.music-toggle:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+}
+
+.music-toggle svg {
+    transition: opacity 0.2s ease;
+}
+
+/* Author Signature - Top Left */
+.author-signature {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    color: rgba(255, 255, 255, 0.6);
+    text-transform: uppercase;
+    z-index: 50;
+    user-select: none;
+    animation: fadeIn 3s ease-in forwards;
+}
